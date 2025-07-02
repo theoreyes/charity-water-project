@@ -1,0 +1,58 @@
+body {
+    background-color: #77B7D0;
+}
+
+#banner-text {
+    padding: 0 30px;
+    padding-bottom: 6px;
+    margin: 15px 0;
+    background-color: #B9E3F4;
+    border-radius: 6px;
+    color: #FCC907;
+    font-size: 2.5em;
+    -webkit-text-stroke: 0.4px black;
+}
+
+#cw-logo {
+    padding: 6px 8px;
+    border-radius: 6px;
+}
+
+#score, #time {
+    font-size: 1.5em;
+    padding-top: 3px;
+    padding-left: 10px;
+    padding-right: 12px;
+    padding-bottom: 6px;
+    background-color: #B9E3F4;
+    border-radius: 6px;
+}
+
+@media (max-width: 575px) {
+  #cw-logo {
+    max-height: 40px;
+  }
+  #reset-button, #pause-button {
+    max-height: 52px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+  
+}
+
+@media (min-width: 1400px) {
+  
+}
