@@ -1,9 +1,10 @@
 const gameModel = {
-    state: 'playing',
     score: 0,
     level: 1,
+    lastLevel: Object.keys(levels).length,
+    timeId: null,
     time: 60,
-    gameBoard: levels[1],
+    gameBoard: JSON.parse(JSON.stringify(levels[1])),
     isFocused: false,
     focusedTile: null,
 };
@@ -92,11 +93,12 @@ function swapTiles(rowA, colA, rowB, colB) {
     gameModel.isFocused = false;
     updateGameBoard(rowA, colA, rowB, colB);
     if (checkWinState() == true) {
-        console.log("You won!")
-    } else {
-        console.log("Nope!");
-    }
-
+        if (gameModel.level == gameModel.lastLevel) {
+            displayLastLevelModal();
+        } else {
+            displayNextLevelModal();
+        }
+    } 
 }
 
 // Function responsible for loading the initial grid, event listeners, and DOM
@@ -156,8 +158,6 @@ function checkWinState() {
     const curTile = {row: gameModel.gameBoard.sourcexy.row,
                    col: gameModel.gameBoard.sourcexy.col
     };
-    console.log("Origin:");
-    console.log(gameModel.gameBoard.sourcexy);
     while (!winChecked) {
         console.log(`Begin loop dir: ${flowdir}`);
         if (curTile == 'X' || curTile =='R')
@@ -197,6 +197,13 @@ function checkWinState() {
     return winState;
 }
 
+// Resets model for game to defaults
+function resetGame() {
+    gameModel.score = 0;
+    gameModel.level = 1;
+    gameModel.gameBoard = JSON.parse(JSON.stringify(levels[1]));
+}
+
 // For debug
 function printGameBoard() {
     for (let i = 1; i < 6; i++) {
@@ -204,4 +211,95 @@ function printGameBoard() {
     }
 }
 
-loadBoard();
+function startGame() {
+    const gameSection = document.getElementById('game-wrapper');
+    gameSection.innerHTML = '';
+    const gameStartModal = new bootstrap.Modal(document.getElementById('gameStartModal'));
+    document.getElementById('startButton').onclick = function () {
+        loadBoard();
+        startTimer();
+    };
+    gameStartModal.show();
+}
+
+function transitionLevel() {
+    if (gameModel.level > gameModel.lastLevel) // Completed last level
+        displayLastLevelModal();
+    else {
+        // JSON parse/stringify used to create new JS object, avoids mutating the original levels
+        gameModel.gameBoard = JSON.parse(JSON.stringify(levels[gameModel.level]));
+        console.log(gameModel.level);
+        loadBoard();
+        startTimer();
+    }
+}
+
+function displayNextLevelModal() {
+    const nextLevelModal = new bootstrap.Modal(document.getElementById('nextLevelModal'));
+    document.getElementById('nextLevelModalHd').textContent = `Level ${gameModel.level} complete!`
+    document.getElementById('nextLevelButton').onclick = function () {
+        transitionLevel();
+    };
+    gameModel.level += 1;
+    nextLevelModal.show();
+}
+
+function displayLastLevelModal() {
+    const lastLevelModal = new bootstrap.Modal(document.getElementById('lastLevelModal'));
+    document.getElementById('resetButton').onclick = function () {
+        resetGame();
+        startGame();
+    };
+    document.getElementById('cwSiteButton').onclick = function () {
+        window.open('https://www.charitywater.org/', '_blank');
+    };
+    lastLevelModal.show();
+}
+
+function displayLostLevelModal() {
+    const lostModal = new bootstrap.Modal(document.getElementById('lostModal'));
+    document.getElementById('levelResetButton').onclick = function () {
+        transitionLevel();
+    }
+    lostModal.show();
+}
+
+function startTimer() {
+    gameModel.time = 60;
+    updateTime();
+    if (gameModel.timeId)
+        clearInterval(gameModel.timeId);
+    gameModel.timeId = setInterval(() => {
+        const modalVis = document.querySelector('.modal.show') != null;
+        if (!modalVis) {
+            gameModel.time -= 1;
+            updateTime();
+            if (gameModel.time == 0) {
+                clearInterval(gameModel.timeId);
+                displayLostLevelModal();
+            }
+        }
+    }, 1000);
+}
+
+function updateTime() {
+    document.getElementById('time').textContent = `⏱️ Time: ${gameModel.time}`;
+}
+
+// Initializes reset button on main menu
+document.getElementById('reset-button').onclick = function () {
+    const resetModal = new bootstrap.Modal(document.getElementById('resetGameModal'));
+    resetModal.show();
+};
+document.getElementById('menuResetButton').onclick = function () {
+    resetGame();
+    startGame();
+};
+
+// Initializes pause button on main menu
+document.getElementById('pause-button').onclick = function () {
+    const pauseModal = new bootstrap.Modal(document.getElementById('pauseGameModal'));
+    pauseModal.show();
+};
+
+startGame();

@@ -34,7 +34,7 @@
     <section id="stats-section" class="container">
         <div class="d-flex justify-content-center gap-4 mt-2">
             <p id="score">💧 Score: [ ]</p>
-            <p id="time">⏱️ Time: [ ]</p>
+            <p id="time"></p>
         </div>
     </section>
 
@@ -44,6 +44,117 @@
 
         </div>
     </section>
+
+    <!---- Modals ---->
+
+    <!-- Game Start -->
+    <div class="modal" id="gameStartModal" tabindex="-1" aria-labelledby="gameStartModalBody" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-position text-center">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="gameStartModalHeader">Welcome to Pipeline Puzzle!</h1>
+            </div>
+            <div id="gameStartModalBody">
+                <h2>How-To-Play</h2>
+                <p>Welcome to Pipeline Puzzle! Click on two pipes to swap them, and build
+                a water line from the water spout to the community marked by the yellow house!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="startButton" class="btn btn-secondary" data-bs-dismiss="modal">Play</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+       <!-- Next Level -->
+    <div class="modal" id="nextLevelModal" tabindex="-1" aria-labelledby="nextLevelModalBody" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-position">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="nextLevelModalHd"></h1>
+            </div>
+            <div id="nextLevelModalBody">
+                <p>Great job! Hit "Continue" to go to the next level.</p>
+                <p>Did you know: [TODO: insert trivia]</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="nextLevelButton" class="btn btn-secondary" data-bs-dismiss="modal">Play</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+       <!-- Last Level -->
+    <div class="modal" id="lastLevelModal" tabindex="-1" aria-labelledby="lastLevelModalBody" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-position">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="lastLevelModalHd"></h1>
+            </div>
+            <div id="lastLevelModalBody">
+                <p>All levels complete!</p>
+                <p>Click below to learn more about how you can bring water to those in need!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="resetButton" class="btn btn-secondary" data-bs-dismiss="modal">Reset Game</button>
+                <button type="button" id="cwSiteButton" class="btn btn-secondary">Learn more</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+       <!-- Reset Game Level -->
+    <div class="modal" id="resetGameModal" tabindex="-1" aria-labelledby="resetGameModalBody" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-position">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="resetGameModalHd"></h1>
+            </div>
+            <div id="resetGameModalBody">
+                <h2>Reset Game?</h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="menuResetButton" class="btn btn-secondary" data-bs-dismiss="modal">Yes</button>
+                <button type="button" id="unpauseButton" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+       <!-- Lost Level -->
+    <div class="modal" id="lostModal" tabindex="-1" aria-labelledby="lostModalBody" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-position">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="lostModalHd"></h1>
+            </div>
+            <div id="lostModalBody">
+                <p>Ran out of time!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="levelResetButton" class="btn btn-secondary" data-bs-dismiss="modal">Restart Level</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+       <!-- Pause Modal -->
+    <div class="modal" id="pauseGameModal" tabindex="-1" aria-labelledby="pauseGameModalBody" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-position">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="pauseGameModalHd"></h1>
+            </div>
+            <div id="pauseGameModalBody">
+                <h2>Game Paused</h2>
+                <p>Press "Continue" to resume</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="menuPauseButton" class="btn btn-secondary" data-bs-dismiss="modal">Continue</button>
+            </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="levels.js"></script>

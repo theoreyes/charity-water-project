@@ -26,6 +26,11 @@ body {
     padding-bottom: 6px;
     background-color: #B9E3F4;
     border-radius: 6px;
+    transition: ease-in-out
+}
+
+#reset-button:hover {
+  
 }
 
 #game-wrapper {
@@ -39,20 +44,35 @@ body {
   max-width: 100%;
   max-height: 100%;
   margin: 2px;
-  border: white 1px solid;
+  border: white 2px solid;
 }
 
 #game-section .noborder-tile {
   border: none;
 }
 
-@media (max-width: 575px) {
-  #cw-logo {
+#gameStartModalBody h2 {
+  padding-top: 2%;
+  text-align: center;
+}
+
+.modal-footer {
+  justify-content: center;
+}
+
+.modal-position {
+  margin-top: 17vh;
+}
+
+#cw-logo {
     max-height: 40px;
   }
-  #reset-button, #pause-button {
-    max-height: 52px;
-  }
+#reset-button, #pause-button {
+  max-height: 52px;
+}
+
+@media (max-width: 575px) {
+  
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
