@@ -3,7 +3,7 @@ const gameModel = {
     level: 1,
     lastLevel: Object.keys(levels).length,
     timeId: null,
-    time: 60,
+    time: 30,
     gameBoard: JSON.parse(JSON.stringify(levels[1])),
     isFocused: false,
     focusedTile: null,
@@ -78,9 +78,25 @@ const dirMap = {
 function tileAction(row, col) {
     if (gameModel.isFocused) { // We need to swap tiles
         swapTiles(gameModel.focusedTile.row, gameModel.focusedTile.col, row, col);
+        removeHighlightFocus();
     } else { // We need to focus the clicked tile
         gameModel.isFocused = true;
         gameModel.focusedTile = { row: row, col: col };
+        highlightFocusedPipe();
+    }
+}
+
+function highlightFocusedPipe() {
+    if (gameModel.focusedTile) { // Prevents grabbing null tile
+        const tile = document.querySelector(`[data-row='${gameModel.focusedTile.row}'][data-col='${gameModel.focusedTile.col}']`);
+        tile.classList.add('tile-focused');
+    }
+}
+
+function removeHighlightFocus() {
+    if (gameModel.focusedTile) { // Prevents grabbing null tile
+        const tile = document.querySelector(`[data-row='${gameModel.focusedTile.row}'][data-col='${gameModel.focusedTile.col}']`);
+        tile.classList.remove('tile-focused');
     }
 }
 
@@ -159,7 +175,7 @@ function checkWinState() {
                    col: gameModel.gameBoard.sourcexy.col
     };
     while (!winChecked) {
-        console.log(`Begin loop dir: ${flowdir}`);
+        //console.log(`Begin loop dir: ${flowdir}`);
         if (curTile == 'X' || curTile =='R')
             return false; // short-circuits from function, means we encountered a wall
         switch (flowdir) {
@@ -200,15 +216,9 @@ function checkWinState() {
 // Resets model for game to defaults
 function resetGame() {
     gameModel.score = 0;
+    document.getElementById('score').textContent = "💧 Score: 0";
     gameModel.level = 1;
     gameModel.gameBoard = JSON.parse(JSON.stringify(levels[1]));
-}
-
-// For debug
-function printGameBoard() {
-    for (let i = 1; i < 6; i++) {
-        console.log(`${gameModel.gameBoard.grid[i]}`);
-    }
 }
 
 function startGame() {
@@ -250,9 +260,6 @@ function displayLastLevelModal() {
         resetGame();
         startGame();
     };
-    document.getElementById('cwSiteButton').onclick = function () {
-        window.open('https://www.charitywater.org/', '_blank');
-    };
     lastLevelModal.show();
 }
 
@@ -265,7 +272,7 @@ function displayLostLevelModal() {
 }
 
 function startTimer() {
-    gameModel.time = 60;
+    gameModel.time = 30;
     updateTime();
     if (gameModel.timeId)
         clearInterval(gameModel.timeId);
@@ -286,6 +293,15 @@ function updateTime() {
     document.getElementById('time').textContent = `⏱️ Time: ${gameModel.time}`;
 }
 
+function updateScore() {
+    gameModel.score += (100 + (5 * gameModel.time));
+    document.getElementById('score').textContent = `💧 Score: ${gameModel.score}`;
+}
+
+function learnMore() {
+    window.open('https://www.charitywater.org/', '_blank');
+}
+
 // Initializes reset button on main menu
 document.getElementById('reset-button').onclick = function () {
     const resetModal = new bootstrap.Modal(document.getElementById('resetGameModal'));
@@ -303,3 +319,13 @@ document.getElementById('pause-button').onclick = function () {
 };
 
 startGame();
+
+
+// Debug stuff, other
+/*
+function printGameBoard() {
+    for (let i = 1; i < 6; i++) {
+        console.log(`${gameModel.gameBoard.grid[i]}`);
+    }
+}
+*/

@@ -1,3 +1,7 @@
+* {
+  font-family: "Nunito", sans-serif;
+}
+
 body {
     background-color: #77B7D0;
 }
@@ -29,8 +33,8 @@ body {
     transition: ease-in-out
 }
 
-#reset-button:hover {
-  
+#reset-button:hover, #pause-button:hover {
+  cursor: pointer;
 }
 
 #game-wrapper {
@@ -56,12 +60,27 @@ body {
   text-align: center;
 }
 
+#resetGameModalBody, #pauseGameModalBody, #nextLevelModalBody, 
+#lastLevelModalBody, #lostModalBody {
+  text-align: center;
+}
+
+.modal-header {
+  justify-content: center;
+}
+
 .modal-footer {
   justify-content: center;
 }
 
 .modal-position {
   margin-top: 17vh;
+}
+
+.tile-focused img {
+  outline: 3.5px solid #ffd849;
+  outline-offset: -2px;
+  background: #8ad7f6;
 }
 
 #cw-logo {
