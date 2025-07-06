@@ -44,6 +44,13 @@ body {
   gap: 3px;
 }
 
+#game-wrapper img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
 #game-section img {
   max-width: 100%;
   max-height: 100%;
@@ -70,6 +77,14 @@ body {
 
 .modal-pg {
   padding: 0px 40px;
+}
+
+#currentScore {
+  margin-bottom: 15px;
+}
+
+#finalScore {
+  margin-top: 12px;
 }
 
 #lastLevelModalBody p {
@@ -106,6 +121,7 @@ body {
 }
 
 .btn {
+  font-size: 1.3em;
   background-color:#ffd849;
   border: 1px solid #fffed9;
   color: #000000;
@@ -130,26 +146,40 @@ body {
   max-height: 52px;
 }
 
-@media (max-width: 575px) {
-  
+@media (min-width: 576px) {
+  #cw-logo {
+    max-height: 44px;
+  }
+  #reset-button, #pause-button {
+    max-height: 57.2px;
+  }
+  #banner-text {
+    font-size: 2.8em;
+  }
+  #score, #time {
+    font-size: 1.8em;
+  }
+  #game-wrapper {
+    grid-template-columns: repeat(5, 70px);
+    grid-template-rows: repeat(7, 70px);
+  }
 }
 
-@media (min-width: 576px) and (max-width: 767px) {
-
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-  
-}
-
-@media (min-width: 1200px) and (max-width: 1399px) {
-  
-}
-
-@media (min-width: 1400px) {
-  
+@media (min-width: 992px) {
+  #cw-logo {
+    max-height: 48px;
+  }
+  #reset-button, #pause-button {
+    max-height: 61px;
+  }
+  #banner-text {
+    font-size: 3.1em;
+  }
+  #score, #time {
+    font-size: 2.1em;
+  }
+  #game-wrapper {
+    grid-template-columns: repeat(5, 80px);
+    grid-template-rows: repeat(7, 80px);
+  }
 }
