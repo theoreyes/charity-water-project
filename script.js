@@ -244,7 +244,7 @@ function transitionLevel(gamestate) {
 
 function displayNextLevelModal() {
     const nextLevelModal = new bootstrap.Modal(document.getElementById('nextLevelModal'));
-    document.getElementById('nextLevelModalHd').textContent = `Level ${gameModel.level} Complete!`
+    document.getElementById('nextLevelModalHd').textContent = `🎉 Level ${gameModel.level} Complete! 🎉`
     document.getElementById('currentScore').textContent = `+${100 + (5 * gameModel.time)} Score`;
     document.getElementById('triviaSection').textContent = `${trivia[gameModel.level - 1]}`;
     document.getElementById('nextLevelButton').onclick = function () {
