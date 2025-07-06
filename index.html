@@ -37,7 +37,7 @@
     <section id="stats-section" class="container">
         <div class="d-flex justify-content-center gap-4 mt-2">
             <p id="score">💧 Score: 0</p>
-            <p id="time"></p>
+            <p id="time">⏱️ Time: 30</p>
         </div>
     </section>
 
@@ -55,17 +55,17 @@
         <div class="modal-dialog modal-position text-center">
             <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="gameStartModalHeader">Welcome to Pipeline Puzzle!</h1>
+                <h1 class="modal-title" id="gameStartModalHeader">Welcome to Pipeline Puzzle!</h1>
             </div>
             <div id="gameStartModalBody">
                 <h2>How-To-Play</h2>
-                <p>Click on two pipes to swap them, and build
+                <p class="modal-pg">Click on two pipes to swap them, and build
                 a water line from the water spout to the community marked by the yellow house!<br>
                 Building the water line faster earns more points.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" id="startButton" class="btn btn-secondary" data-bs-dismiss="modal">Play</button>
-                <button type="button" id="cwSiteButton" class="btn btn-secondary" onclick="learnMore()">Learn More</button>
+                <button type="button" id="startButton" class="btn btn-secondary my-modal-button" data-bs-dismiss="modal">Play</button>
+                <button type="button" id="cwSiteButton" class="btn btn-secondary my-modal-button" onclick="learnMore()">Learn More</button>
             </div>
             </div>
         </div>
@@ -79,12 +79,12 @@
                 <h1 class="modal-title fs-5" id="nextLevelModalHd"></h1>
             </div>
             <div id="nextLevelModalBody">
-                <p>Great job! Hit "Continue" to go to the next level.</p>
-                <p id="triviaSection"></p>
+                <p class="modal-pg">Great job! Click "Next Level" to continue playing.</p>
+                <p id="triviaSection" class="modal-pg"></p>
             </div>
             <div class="modal-footer">
-                <button type="button" id="nextLevelButton" class="btn btn-secondary" data-bs-dismiss="modal">Play</button>
-                <button type="button" id="cwSiteButton" class="btn btn-secondary" onclick="learnMore()">Learn More</button>
+                <button type="button" id="nextLevelButton" class="btn btn-secondary my-modal-button" data-bs-dismiss="modal">Next Level</button>
+                <button type="button" id="cwSiteButton" class="btn btn-secondary my-modal-button" onclick="learnMore()">Learn More</button>
             </div>
             </div>
         </div>
@@ -95,15 +95,14 @@
         <div class="modal-dialog modal-position">
             <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="lastLevelModalHd"></h1>
+                <h1 class="modal-title">All levels complete!</h1>
             </div>
             <div id="lastLevelModalBody">
-                <p>All levels complete!</p>
-                <p>Click below to learn more about how you can bring water to those in need!</p>
+                <p class="modal-pg">Click below to learn more about how you can bring water to those in need!</p>
             </div>
             <div class="modal-footer">
-                <button type="button" id="resetButton" class="btn btn-secondary" data-bs-dismiss="modal">Reset Game</button>
-                <button type="button" id="cwSiteButton" class="btn btn-secondary" onclick="learnMore()">Learn More</button>
+                <button type="button" id="resetButton" class="btn btn-secondary my-modal-button" data-bs-dismiss="modal">Reset Game</button>
+                <button type="button" id="cwSiteButton" class="btn btn-secondary my-modal-button" onclick="learnMore()">Learn More</button>
             </div>
             </div>
         </div>
@@ -120,8 +119,8 @@
                 <h2 id="modalHeader">Reset Game?</h2>
             </div>
             <div class="modal-footer">
-                <button type="button" id="menuResetButton" class="btn btn-secondary" data-bs-dismiss="modal">Yes</button>
-                <button type="button" id="unpauseButton" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button type="button" id="menuResetButton" class="btn btn-secondary my-modal-button" data-bs-dismiss="modal">Yes</button>
+                <button type="button" id="unpauseButton" class="btn btn-secondary my-modal-button" data-bs-dismiss="modal">No</button>
             </div>
             </div>
         </div>
@@ -135,10 +134,10 @@
                 <h1 class="modal-title fs-5" id="lostModalHd"></h1>
             </div>
             <div id="lostModalBody">
-                <p>Ran out of time!</p>
+                <h2>Ran out of time!</h2>
             </div>
             <div class="modal-footer">
-                <button type="button" id="levelResetButton" class="btn btn-secondary" data-bs-dismiss="modal">Restart Level</button>
+                <button type="button" id="levelResetButton" class="btn btn-secondary my-modal-button" data-bs-dismiss="modal">Restart Level</button>
             </div>
             </div>
         </div>
@@ -153,10 +152,10 @@
             </div>
             <div id="pauseGameModalBody">
                 <h2>Game Paused</h2>
-                <p>Press "Continue" to resume</p>
+                <p class="modal-pg">Press "Continue" to resume</p>
             </div>
             <div class="modal-footer">
-                <button type="button" id="menuPauseButton" class="btn btn-secondary" data-bs-dismiss="modal">Continue</button>
+                <button type="button" id="menuPauseButton" class="btn btn-secondary my-modal-button" data-bs-dismiss="modal">Continue</button>
             </div>
             </div>
         </div>
@@ -164,6 +163,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="levels.js"></script>
+    <script src="trivia.js"></script>
     <script src="script.js"></script>
 </body>
 </body>

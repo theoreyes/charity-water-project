@@ -110,6 +110,7 @@ function swapTiles(rowA, colA, rowB, colB) {
     updateGameBoard(rowA, colA, rowB, colB);
     if (checkWinState() == true) {
         if (gameModel.level == gameModel.lastLevel) {
+            updateScore();
             displayLastLevelModal();
         } else {
             displayNextLevelModal();
@@ -232,21 +233,18 @@ function startGame() {
     gameStartModal.show();
 }
 
-function transitionLevel() {
-    if (gameModel.level > gameModel.lastLevel) // Completed last level
-        displayLastLevelModal();
-    else {
-        // JSON parse/stringify used to create new JS object, avoids mutating the original levels
-        gameModel.gameBoard = JSON.parse(JSON.stringify(levels[gameModel.level]));
-        console.log(gameModel.level);
-        loadBoard();
-        startTimer();
-    }
+function transitionLevel(gamestate) {
+    // JSON parse/stringify used to create new JS object, avoids mutating the original levels
+    gameModel.gameBoard = JSON.parse(JSON.stringify(levels[gameModel.level]));
+    if (gamestate != "lost") updateScore();
+    loadBoard();
+    startTimer();
 }
 
 function displayNextLevelModal() {
     const nextLevelModal = new bootstrap.Modal(document.getElementById('nextLevelModal'));
-    document.getElementById('nextLevelModalHd').textContent = `Level ${gameModel.level} complete!`
+    document.getElementById('nextLevelModalHd').textContent = `Level ${gameModel.level} Complete!`
+    document.getElementById('triviaSection').textContent = `${trivia[gameModel.level - 1]}`;
     document.getElementById('nextLevelButton').onclick = function () {
         transitionLevel();
     };
@@ -266,7 +264,7 @@ function displayLastLevelModal() {
 function displayLostLevelModal() {
     const lostModal = new bootstrap.Modal(document.getElementById('lostModal'));
     document.getElementById('levelResetButton').onclick = function () {
-        transitionLevel();
+        transitionLevel("lost");
     }
     lostModal.show();
 }
@@ -307,6 +305,13 @@ document.getElementById('reset-button').onclick = function () {
     const resetModal = new bootstrap.Modal(document.getElementById('resetGameModal'));
     resetModal.show();
 };
+document.getElementById('reset-button').addEventListener('mouseenter', function () {
+    this.src = "assets/images/reset-button-hover-img.png";
+});
+document.getElementById('reset-button').addEventListener('mouseleave', function () {
+    this.src = "assets/images/reset-button-img.png";
+});
+
 document.getElementById('menuResetButton').onclick = function () {
     resetGame();
     startGame();
@@ -318,10 +323,20 @@ document.getElementById('pause-button').onclick = function () {
     pauseModal.show();
 };
 
+document.getElementById('pause-button').addEventListener('mouseenter', function () {
+    this.src = "assets/images/pause-button-hover-img.png";
+});
+document.getElementById('pause-button').addEventListener('mouseleave', function () {
+    this.src = "assets/images/pause-button-img.png";
+});
+
+// Shuffle trivia ordering
+trivia.sort(() => (Math.random() - 0.5));
+console.log(trivia);
+// Game starts here
 startGame();
 
-
-// Debug stuff, other
+// Debug
 /*
 function printGameBoard() {
     for (let i = 1; i < 6; i++) {

@@ -60,9 +60,37 @@ body {
   text-align: center;
 }
 
+#gameStartModalHeader {
+  font-size: 2rem;
+}
+
+#modalHeader {
+  margin-top: 10px;
+}
+
+.modal-pg {
+  padding: 0px 40px;
+}
+
+#lastLevelModalBody p {
+  margin-top: 12px;
+}
+
 #resetGameModalBody, #pauseGameModalBody, #nextLevelModalBody, 
 #lastLevelModalBody, #lostModalBody {
   text-align: center;
+}
+
+#nextLevelModalBody {
+  margin-top: 12px;
+}
+
+#lostModalBody {
+  margin-top: 10px;
+}
+
+#pauseGameModalBody {
+  margin-top: 10px;
 }
 
 .modal-header {
@@ -75,6 +103,18 @@ body {
 
 .modal-position {
   margin-top: 17vh;
+}
+
+.btn {
+  background-color:#ffd849;
+  border: 1px solid #fffed9;
+  color: #000000;
+}
+
+.btn:hover {
+  background-color:#ffd849;
+  border: 1px solid #4a4a4a;
+  color: #000000;
 }
 
 .tile-focused img {
