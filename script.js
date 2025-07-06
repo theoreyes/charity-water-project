@@ -1,9 +1,11 @@
+TIME_BLOCK_SIZE = 60
+
 const gameModel = {
     score: 0,
     level: 1,
     lastLevel: Object.keys(levels).length,
     timeId: null,
-    time: 30,
+    time: TIME_BLOCK_SIZE,
     gameBoard: JSON.parse(JSON.stringify(levels[1])),
     isFocused: false,
     focusedTile: null,
@@ -273,7 +275,7 @@ function displayLostLevelModal() {
 }
 
 function startTimer() {
-    gameModel.time = 30;
+    gameModel.time = TIME_BLOCK_SIZE;
     updateTime();
     if (gameModel.timeId)
         clearInterval(gameModel.timeId);
