@@ -1,6 +1,7 @@
 TIME_BLOCK_SIZE = 60
 
 const gameModel = {
+    difficulty: 0,  // 0 is set as default to avoid using undefined
     score: 0,
     level: 1,
     lastLevel: Object.keys(levels).length,
@@ -72,6 +73,11 @@ const dirMap = {
     'north': 'south',
     'east': 'west',
     'west': 'east'
+}
+
+// Changes difficulty based off integer value (0/1/2 for easy/med/hard)
+function selectDifficulty(diffInt) {
+    gameModel.difficulty = diffInt;
 }
 
 // Function to check whether a tile click should trigger a "focusTile" action
@@ -302,7 +308,7 @@ function updateScore() {
 }
 
 function learnMore() {
-    window.open('https://www.charitywater.org/', '_blank');
+    window.open('https://www.charitywater.org/donate', '_blank');
 }
 
 // Initializes reset button on main menu

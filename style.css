@@ -1,5 +1,5 @@
 * {
-  font-family: "Nunito", sans-serif;
+  font-family: "Proxima Nova";
 }
 
 body {
@@ -13,7 +13,8 @@ body {
     background-color: #B9E3F4;
     border-radius: 6px;
     color: #FCC907;
-    font-size: 2.5em;
+    font-weight: bolder;
+    font-size: 2.8em;
     -webkit-text-stroke: 0.4px black;
 }
 
@@ -23,7 +24,7 @@ body {
 }
 
 #score, #time {
-    font-size: 1.5em;
+    font-size: 2.4em;
     padding-top: 3px;
     padding-left: 10px;
     padding-right: 12px;
@@ -39,8 +40,8 @@ body {
 
 #game-wrapper {
   display: grid;
-  grid-template-columns: repeat(5, 64px);
-  grid-template-rows: repeat(7, 64px);
+  grid-template-columns: repeat(5, 72px);
+  grid-template-rows: repeat(7, 72px);
   gap: 3px;
 }
 
@@ -120,8 +121,24 @@ body {
   margin-top: 17vh;
 }
 
+.footer-area {
+  width: 600px;
+  background:#B9E3F4;
+  border-radius: 6px;
+}
+
+.footer-area a {
+  color: #00202d;
+  font-size: 1.2em;
+  text-decoration: none;
+  background: #d9f4ff;
+  padding: 3px 2px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
 .btn {
-  font-size: 1.3em;
+  font-size: 1.8em;
   background-color:#ffd849;
   border: 1px solid #fffed9;
   color: #000000;
@@ -140,21 +157,52 @@ body {
 }
 
 #cw-logo {
-    max-height: 40px;
-  }
+    height: 60px;
+}
 #reset-button, #pause-button {
-  max-height: 52px;
+    max-height: 72px;
 }
 
-@media (min-width: 576px) {
+#resetGameModalBody h2 {
+  padding-top: 5px;
+}
+
+.p_text {
+    font-size: 1.2em;
+}
+
+@media (min-width: 576px) and (max-width: 992px) {
   #cw-logo {
-    max-height: 44px;
+    height: 48px;
   }
   #reset-button, #pause-button {
-    max-height: 57.2px;
+    height: 61px;
+  }
+  #score, #time {
+    font-size: 2.1em;
+  }
+  .footer-area{
+    max-width: 600px;
+    width: 80%;
+  }
+}
+
+@media (max-width: 575.9px) {
+  .h_text {
+    font-weight: bold;
+    font-size: 2.1em;
+  }
+  .p_text {
+    font-size: 1.2em;
+  }
+  #cw-logo {
+    height: 40px;
+  }
+  #reset-button, #pause-button {
+    height: 57.2px;
   }
   #banner-text {
-    font-size: 2.8em;
+    font-size: 2.2em;
   }
   #score, #time {
     font-size: 1.8em;
@@ -163,23 +211,7 @@ body {
     grid-template-columns: repeat(5, 70px);
     grid-template-rows: repeat(7, 70px);
   }
-}
-
-@media (min-width: 992px) {
-  #cw-logo {
-    max-height: 48px;
-  }
-  #reset-button, #pause-button {
-    max-height: 61px;
-  }
-  #banner-text {
-    font-size: 3.1em;
-  }
-  #score, #time {
-    font-size: 2.1em;
-  }
-  #game-wrapper {
-    grid-template-columns: repeat(5, 80px);
-    grid-template-rows: repeat(7, 80px);
+  .footer-area {
+    width: 90%;
   }
 }

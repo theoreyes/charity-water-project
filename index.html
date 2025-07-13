@@ -49,6 +49,18 @@
         </div>
     </section>
 
+    <!-- Footer Section -->
+    <footer class="footer-area container-fluid text-center pt-1 pb-2 mt-5">
+        <div class="row justify-content-center pt-1">
+        <div class="col col-md-2">
+            <a href="https://www.charitywater.org/donate" target="_blank">Donate</a>
+        </div>
+        <div class="col col-md-2">
+            <a href="https://www.charitywater.org/about" target="_blank">About Us</a>
+        </div>
+        </div>
+    </footer>
+
     <!---- Modals ---->
 
     <!-- Game Start -->
@@ -59,8 +71,8 @@
                 <h1 class="modal-title" id="gameStartModalHeader">Welcome to Pipeline Puzzle!</h1>
             </div>
             <div id="gameStartModalBody">
-                <h2>How-To-Play</h2>
-                <p class="modal-pg">Click on two pipes to swap them, and build
+                <h2 class="h_text">How-To-Play</h2>
+                <p class="modal-pg p_text">Click on two pipes to swap them, and build
                 a water line from the water spout to the community marked by the yellow house!<br>
                 Building the water line faster earns more points.</p>
             </div>
@@ -81,7 +93,7 @@
             </div>
             <div id="nextLevelModalBody">
                 <h2 id="currentScore"></h2>
-                <p class="modal-pg">Great job! Click "Next Level" to continue playing.</p>
+                <p class="modal-pg p_text">Great job! Click "Next Level" to continue playing.</p>
                 <p id="triviaSection" class="modal-pg"></p>
             </div>
             <div class="modal-footer">
@@ -101,7 +113,7 @@
             </div>
             <div id="lastLevelModalBody">
                 <h2 id="finalScore"></h2>
-                <p class="modal-pg">Click below to learn more about how you can bring water to those in need!</p>
+                <p class="modal-pg p_text">Click below to learn more about how you can bring water to those in need!</p>
             </div>
             <div class="modal-footer">
                 <button type="button" id="resetButton" class="btn btn-secondary my-modal-button" data-bs-dismiss="modal">Reset Game</button>
@@ -119,7 +131,7 @@
                 <h1 class="modal-title fs-5" id="resetGameModalHd"></h1>
             </div>
             <div id="resetGameModalBody">
-                <h2 id="modalHeader">Reset Game?</h2>
+                <h2 id="modalHeader h_text">Reset Game?</h2>
             </div>
             <div class="modal-footer">
                 <button type="button" id="menuResetButton" class="btn btn-secondary my-modal-button" data-bs-dismiss="modal">Yes</button>
@@ -151,11 +163,10 @@
         <div class="modal-dialog modal-position">
             <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="pauseGameModalHd"></h1>
+                <h1 class="modal-title h_text" id="pauseGameModalHd">Game Paused</h1>
             </div>
             <div id="pauseGameModalBody">
-                <h2>Game Paused</h2>
-                <p class="modal-pg">Press "Continue" to resume</p>
+                <p class="modal-pg p_text">Press "Continue" to resume</p>
             </div>
             <div class="modal-footer">
                 <button type="button" id="menuPauseButton" class="btn btn-secondary my-modal-button" data-bs-dismiss="modal">Continue</button>
@@ -163,6 +174,7 @@
             </div>
         </div>
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="levels.js"></script>
