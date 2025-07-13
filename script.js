@@ -1,6 +1,7 @@
-TIME_BLOCK_SIZE = 60
-TOTAL_LEVELS = 5;
-let levels = {}; // placeholder reference, dictates which level set is used (easy/med/hard)
+const TIME_BLOCK_SIZE = 60
+const TOTAL_LEVELS = 5;
+const SCORE_MULTIPLIER = 1;
+const levels = {}; // placeholder reference, dictates which level set is used (easy/med/hard)
 const popSound = new Audio('assets/sounds/pop.mp3');
 
 const gameModel = {
@@ -84,14 +85,17 @@ function selectDifficulty(diffInt) {
         case 0:
             TIME_BLOCK_SIZE = 60;
             levels = levelsEasy;
+            SCORE_MULTIPLIER = 1;
             break;
         case 1:
             TIME_BLOCK_SIZE = 45;
             levels = levelsMed;
+            SCORE_MULTIPLIER = 1.5;
             break;
         case 2:
             TIME_BLOCK_SIZE = 30;
             levels = levelsHard;
+            SCORE_MULTIPLIER = 2;
             break;
     }
     gameModel.gameBoard = JSON.parse(JSON.stringify(levels[gameModel.level]));
@@ -342,7 +346,7 @@ function updateTime() {
 }
 
 function updateScore() {
-    gameModel.score += (100 + (5 * gameModel.time));
+    gameModel.score += ((SCORE_MULTIPLIER * 100) + (SCORE_MULTIPLIER * gameModel.time));
     document.getElementById('score').textContent = `💧 Score: ${gameModel.score}`;
 }
 
