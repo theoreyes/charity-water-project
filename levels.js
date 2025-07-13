@@ -1,5 +1,6 @@
-const levels = {
-    1:  {
+
+const levelsEasy = {
+    1: {
         grid: [
             ['X', 'X', 'X',  'X',  'X',  'T',  'X'],
             ['X', 'ns','es', 'nw', 'ns', 'ew', 'X'],
@@ -27,6 +28,48 @@ const levels = {
     },
     3: {
         grid: [
+            ['X', 'T', 'X',  'X',  'X',  'X',  'X'],
+            ['X', 'ew','sw', 'nw', 'ew', 'sw', 'X'],
+            ['X', 'es','R', 'ne', 'ne', 'ns', 'X'],
+            ['X', 'ns','sw', 'es', 'es', 'ns',  'X'],
+            ['X', 'ns','R', 'ew', 'ne',  'ns', 'X'],
+            ['X', 'ew','ns', 'ns', 'ns', 'sw', 'X'],
+            ['X', 'X', 'X',  'S',  'X',  'X',  'X'],
+        ],
+        sourcexy: {row: 6, col: 3},
+        targetxy: {row: 0, col: 1}
+    },
+    4: {
+        grid: [
+            ['X', 'X', 'T',  'X',  'X',  'X',  'X'],
+            ['X', 'es','ew', 'ne', 'ns', 'ne', 'X'],
+            ['X', 'ew','R', 'es', 'ns', 'sw', 'X'],
+            ['X', 'ns','es', 'es', 'nw', 'ns', 'X'],
+            ['X', 'R','nw', 'ns', 'ew',  'nw', 'X'],
+            ['X', 'es','es', 'nw', 'ns', 'es', 'X'],
+            ['X', 'S', 'X',  'X',  'X',  'X',  'X'],
+        ],
+        sourcexy: {row: 6, col: 1},
+        targetxy: {row: 0, col: 2}
+    },
+    5: {
+        grid: [
+            ['X', 'T', 'X',  'X',  'X',  'X',  'X'],
+            ['X', 'ew','R', 'ew', 'ew', 'ns', 'X'],
+            ['X', 'ne','R', 'ns', 'es', 'ew', 'X'],
+            ['X', 'ns','sw', 'ne', 'ns', 'sw',  'X'],
+            ['X', 'ne','R', 'sw', 'ne',  'nw', 'X'],
+            ['X', 'ne','ns', 'sw', 'ns', 'ne', 'X'],
+            ['X', 'X', 'X',  'X',  'X',  'S',  'X'],
+        ],
+        sourcexy: {row: 6, col: 5},
+        targetxy: {row: 0, col: 1}
+    }
+};
+
+const levelsMed = {
+    1: {
+        grid: [
             ['X', 'X', 'X',  'X',  'T',  'X',  'X'],
             ['X', 'ew','R', 'sw', 'es',   'R', 'X'],
             ['X', 'ns','R', 'sw', 'R',   'ns', 'X'],
@@ -38,7 +81,7 @@ const levels = {
         sourcexy: {row: 6, col: 2},
         targetxy: {row: 0, col: 4}
     },
-    4:  {
+    2: {
         grid: [
             ['X', 'T', 'X',  'X',  'X',  'X',  'X'],
             ['X', 'ew','ew', 'es', 'ns', 'R', 'X'],
@@ -51,7 +94,7 @@ const levels = {
         sourcexy: {row: 6, col: 5},
         targetxy: {row: 0, col: 1}
     },
-    5:  {
+    3: {
         grid: [
             ['X', 'X', 'X',  'T',  'X',  'X',  'X'],
             ['X', 'ew','R', 'sw', 'ns', 'ns', 'X'],
@@ -64,7 +107,7 @@ const levels = {
         sourcexy: {row: 6, col: 1},
         targetxy: {row: 0, col: 3}
     },
-    6:  {
+    4: {
         grid: [
             ['X', 'T', 'X',  'X',  'X',  'X',  'X'],
             ['X', 'es','ns', 'ns', 'nw', 'R', 'X'],
@@ -77,7 +120,23 @@ const levels = {
         sourcexy: {row: 6, col: 1},
         targetxy: {row: 0, col: 1}
     },
-    7:  {
+    5: {
+    grid: [
+            ['X', 'T', 'X',  'X',  'X',  'X',  'X'],
+            ['X', '','', '', '', '', 'X'],
+            ['X', '','', '', '', '', 'X'],
+            ['X', '','', '', '', '',  'X'],
+            ['X', '','', '', '',  '', 'X'],
+            ['X', '','', '', '', '', 'X'],
+            ['X', 'S', 'X',  'X',  'X',  'X',  'X'],
+        ],
+        sourcexy: {row: 6, col: 1},
+        targetxy: {row: 0, col: 1}
+    }
+};
+
+const levelsHard = {
+    1: {
         grid: [
             ['X', 'X', 'X',  'X',  'X',  'T',  'X'],
             ['X', 'ns','ns', 'ns', 'R', 'ns', 'X'],
@@ -90,4 +149,56 @@ const levels = {
         sourcexy: {row: 6, col: 1},
         targetxy: {row: 0, col: 5}
     },
-}
+    2: {
+        grid: [
+            ['X', 'T', 'X',  'X',  'X',  'X',  'X'],
+            ['X', '','', '', '', '', 'X'],
+            ['X', '','', '', '', '', 'X'],
+            ['X', '','', '', '', '',  'X'],
+            ['X', '','', '', '',  '', 'X'],
+            ['X', '','', '', '', '', 'X'],
+            ['X', 'S', 'X',  'X',  'X',  'X',  'X'],
+        ],
+        sourcexy: {row: 6, col: 1},
+        targetxy: {row: 0, col: 1}
+    },
+    3: {
+        grid: [
+            ['X', 'T', 'X',  'X',  'X',  'X',  'X'],
+            ['X', '','', '', '', '', 'X'],
+            ['X', '','', '', '', '', 'X'],
+            ['X', '','', '', '', '',  'X'],
+            ['X', '','', '', '',  '', 'X'],
+            ['X', '','', '', '', '', 'X'],
+            ['X', 'S', 'X',  'X',  'X',  'X',  'X'],
+        ],
+        sourcexy: {row: 6, col: 1},
+        targetxy: {row: 0, col: 1}
+    },
+    4: {
+        grid: [
+            ['X', 'T', 'X',  'X',  'X',  'X',  'X'],
+            ['X', '','', '', '', '', 'X'],
+            ['X', '','', '', '', '', 'X'],
+            ['X', '','', '', '', '',  'X'],
+            ['X', '','', '', '',  '', 'X'],
+            ['X', '','', '', '', '', 'X'],
+            ['X', 'S', 'X',  'X',  'X',  'X',  'X'],
+        ],
+        sourcexy: {row: 6, col: 1},
+        targetxy: {row: 0, col: 1}
+    },
+    5: {
+        grid: [
+            ['X', 'T', 'X',  'X',  'X',  'X',  'X'],
+            ['X', '','', '', '', '', 'X'],
+            ['X', '','', '', '', '', 'X'],
+            ['X', '','', '', '', '',  'X'],
+            ['X', '','', '', '',  '', 'X'],
+            ['X', '','', '', '', '', 'X'],
+            ['X', 'S', 'X',  'X',  'X',  'X',  'X'],
+        ],
+        sourcexy: {row: 6, col: 1},
+        targetxy: {row: 0, col: 1}
+    }
+};

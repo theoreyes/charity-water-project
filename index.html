@@ -75,10 +75,12 @@
                 <p class="modal-pg p_text">Click on two pipes to swap them, and build
                 a water line from the water spout to the community marked by the yellow house!<br>
                 Building the water line faster earns more points.</p>
+                <p class="modal-pg p_text">Select a difficulty below to begin playing!</p>
             </div>
             <div class="modal-footer">
-                <button type="button" id="startButton" class="btn btn-secondary my-modal-button" data-bs-dismiss="modal">Play</button>
-                <button type="button" id="cwSiteButton" class="btn btn-secondary my-modal-button" onclick="learnMore()">Learn More</button>
+                <button type="button" id="easyButton" class="btn btn-secondary my-modal-button" data-bs-dismiss="modal">Easy</button>
+                <button type="button" id="medButton" class="btn btn-secondary my-modal-button" data-bs-dismiss="modal">Medium</button>
+                <button type="button" id="hardButton" class="btn btn-secondary my-modal-button" data-bs-dismiss="modal">Hard</button>
             </div>
             </div>
         </div>
@@ -94,6 +96,7 @@
             <div id="nextLevelModalBody">
                 <h2 id="currentScore"></h2>
                 <p class="modal-pg p_text">Great job! Click "Next Level" to continue playing.</p>
+                <p class="milestoneSection"></p> <!-- Usually empty, used for milestone scores -->
                 <p id="triviaSection" class="modal-pg"></p>
             </div>
             <div class="modal-footer">

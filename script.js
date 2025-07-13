@@ -1,13 +1,16 @@
 TIME_BLOCK_SIZE = 60
+TOTAL_LEVELS = 5;
+let levels = {}; // placeholder reference, dictates which level set is used (easy/med/hard)
+const popSound = new Audio('assets/sounds/pop.mp3');
 
 const gameModel = {
     difficulty: 0,  // 0 is set as default to avoid using undefined
     score: 0,
     level: 1,
-    lastLevel: Object.keys(levels).length,
+    lastLevel: TOTAL_LEVELS,
     timeId: null,
     time: TIME_BLOCK_SIZE,
-    gameBoard: JSON.parse(JSON.stringify(levels[1])),
+    gameBoard: {},
     isFocused: false,
     focusedTile: null,
 };
@@ -77,7 +80,21 @@ const dirMap = {
 
 // Changes difficulty based off integer value (0/1/2 for easy/med/hard)
 function selectDifficulty(diffInt) {
-    gameModel.difficulty = diffInt;
+    switch (diffInt) {
+        case 0:
+            TIME_BLOCK_SIZE = 60;
+            levels = levelsEasy;
+            break;
+        case 1:
+            TIME_BLOCK_SIZE = 45;
+            levels = levelsMed;
+            break;
+        case 2:
+            TIME_BLOCK_SIZE = 30;
+            levels = levelsHard;
+            break;
+    }
+    gameModel.gameBoard = JSON.parse(JSON.stringify(levels[gameModel.level]));
 }
 
 // Function to check whether a tile click should trigger a "focusTile" action
@@ -123,7 +140,9 @@ function swapTiles(rowA, colA, rowB, colB) {
         } else {
             displayNextLevelModal();
         }
-    } 
+    }
+    popSound.currentTime = 0;
+    popSound.play();
 }
 
 // Function responsible for loading the initial grid, event listeners, and DOM
@@ -234,11 +253,31 @@ function startGame() {
     const gameSection = document.getElementById('game-wrapper');
     gameSection.innerHTML = '';
     const gameStartModal = new bootstrap.Modal(document.getElementById('gameStartModal'));
+    document.getElementById('easyButton').addEventListener('click', function () {
+        selectDifficulty(0);
+        loadBoard();
+        startTimer();
+    });
+    document.getElementById('medButton').addEventListener('click', function () {
+        selectDifficulty(1);
+        loadBoard();
+        startTimer();
+    });
+    document.getElementById('hardButton').addEventListener('click', function () {
+        selectDifficulty(2);
+        loadBoard();
+        startTimer();
+    });
+
+    // NOTE: old start game event listener, for reference
+    /* 
     document.getElementById('startButton').onclick = function () {
         loadBoard();
         startTimer();
     };
+    */
     gameStartModal.show();
+    
 }
 
 function transitionLevel(gamestate) {
