@@ -164,7 +164,7 @@ const levelsHard = {
     3: {
         grid: [
             ['X', 'X', 'X',  'X',  'T',  'X',  'X'],
-            ['X', 'R','R', 'R', 'ew', 'ne', 'X'],
+            ['X', 'R','R', 'R', 'ew', 'nw', 'X'],
             ['X', 'ns','ew', 'ns', 'R', 'sw', 'X'],
             ['X', 'ne','R', 'sw', 'sw', 'ns',  'X'],
             ['X', 'es','R', 'R', 'R',  'R', 'X'],
