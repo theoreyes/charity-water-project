@@ -1,22 +1,31 @@
-TIME_BLOCK_SIZE = 60
-TOTAL_LEVELS = 5;
-SCORE_MULTIPLIER = 1;
-const levels = {}; // placeholder reference, dictates which level set is used (easy/med/hard)
+let timeBlockSize = 60;
+let totalLevels = 5;
+let scoreMult = 2;
+let levels = {}; // placeholder reference, dictates which level set is used (easy/med/hard)
 const popSound = new Audio('assets/sounds/pop.mp3');
-const milestones = [
-    "Nice flow! You've reached 500 or more points!",
-    "Clean water reached the community! You've reached 1000 or more points!",
-    "Incredible work! You reached 2000 or more points!"
-];
+const milestones = {
+    1: {
+        hasBeenDisplayed: false,
+        message: "Milestone Reached: 300 or more points!"
+    },
+    2: {
+        hasBeenDisplayed: false,
+        message: "Milestone Reached: 500 or more points!"
+    },
+    3: {
+        hasBeenDisplayed: false,
+        message: "Milestone Reached: 1000 or more points!"
+    }
+}
 
 
 const gameModel = {
     difficulty: 0,  // 0 is set as default to avoid using undefined
     score: 0,
     level: 1,
-    lastLevel: TOTAL_LEVELS,
+    lastLevel: totalLevels,
     timeId: null,
-    time: TIME_BLOCK_SIZE,
+    time: timeBlockSize,
     gameBoard: {},
     isFocused: false,
     focusedTile: null,
@@ -89,19 +98,19 @@ const dirMap = {
 function selectDifficulty(diffInt) {
     switch (diffInt) {
         case 0:
-            TIME_BLOCK_SIZE = 60;
+            timeBlockSize = 60;
             levels = levelsEasy;
-            SCORE_MULTIPLIER = 1;
+            scoreMult = 2;
             break;
         case 1:
-            TIME_BLOCK_SIZE = 45;
+            timeBlockSize = 45;
             levels = levelsMed;
-            SCORE_MULTIPLIER = 1.5;
+            scoreMult = 3;
             break;
         case 2:
-            TIME_BLOCK_SIZE = 30;
+            timeBlockSize = 30;
             levels = levelsHard;
-            SCORE_MULTIPLIER = 2;
+            scoreMult = 4;
             break;
     }
     gameModel.gameBoard = JSON.parse(JSON.stringify(levels[gameModel.level]));
@@ -148,6 +157,7 @@ function swapTiles(rowA, colA, rowB, colB) {
             updateScore();
             displayLastLevelModal();
         } else {
+            updateScore();
             displayNextLevelModal();
         }
     }
@@ -256,7 +266,9 @@ function resetGame() {
     gameModel.score = 0;
     document.getElementById('score').textContent = "💧 Score: 0";
     gameModel.level = 1;
-    gameModel.gameBoard = JSON.parse(JSON.stringify(levels[1]));
+    for (const key in milestones)
+        key.hasBeenDisplayed = false;
+    //gameModel.gameBoard = JSON.parse(JSON.stringify(levels[1]));
 }
 
 function startGame() {
@@ -293,7 +305,7 @@ function startGame() {
 function transitionLevel(gamestate) {
     // JSON parse/stringify used to create new JS object, avoids mutating the original levels
     gameModel.gameBoard = JSON.parse(JSON.stringify(levels[gameModel.level]));
-    if (gamestate != "lost") updateScore();
+    //if (gamestate != "lost") updateScore(); // TODO: Check if needed
     loadBoard();
     startTimer();
 
@@ -302,14 +314,26 @@ function transitionLevel(gamestate) {
 function displayNextLevelModal() {
     const nextLevelModal = new bootstrap.Modal(document.getElementById('nextLevelModal'));
     document.getElementById('nextLevelModalHd').textContent = `🎉 Level ${gameModel.level} Complete! 🎉`
-    document.getElementById('currentScore').textContent = `+${100 + (5 * gameModel.time)} Score`;
+    document.getElementById('currentScore').textContent = `+${((scoreMult * 100) + (scoreMult * gameModel.time))} Score`;
     document.getElementById('triviaSection').textContent = `${trivia[gameModel.level - 1]}`;
     document.getElementById('nextLevelButton').onclick = function () {
         transitionLevel();
     };
-    if (gameModel.score >= 500 && gameModel.score <= 749) {
-        
-    } 
+    console.log(gameModel.score);
+    if ((gameModel.score >= 300 && gameModel.score <= 499) && (milestones[1].hasBeenDisplayed == false)) {
+        document.getElementById('milestoneSection').textContent = `${milestones[1].message}`;
+        milestones[1].hasBeenDisplayed = true;
+    }
+    else if ((gameModel.score >= 500 && gameModel.score <= 999) && (milestones[2].hasBeenDisplayed == false)) {
+        document.getElementById('milestoneSection').textContent = `${milestones[2].message}`;
+        milestones[2].hasBeenDisplayed = true;
+    }
+    else if ((gameModel.score >= 1000) && (milestones[3].hasBeenDisplayed == false)) {
+        document.getElementById('milestoneSection').textContent = `${milestones[3].message}`;
+        milestones[3].hasBeenDisplayed = true;
+    } else {
+        document.getElementById('milestoneSection').textContent = '';
+    }
     gameModel.level += 1;
     nextLevelModal.show();
 }
@@ -317,6 +341,20 @@ function displayNextLevelModal() {
 function displayLastLevelModal() {
     const lastLevelModal = new bootstrap.Modal(document.getElementById('lastLevelModal'));
     document.getElementById('finalScore').textContent = `Final Score: ${gameModel.score}`;
+    if ((gameModel.score >= 300 && gameModel.score <= 499) && (milestones[1].hasBeenDisplayed == false)) {
+        document.getElementById('lastScoreMilestone').textContent = `${milestones[1].message}`;
+        milestones[1].hasBeenDisplayed = true;
+    }
+    else if ((gameModel.score >= 500 && gameModel.score <= 999) && (milestones[2].hasBeenDisplayed == false)) {
+        document.getElementById('lastScoreMilestone').textContent = `${milestones[2].message}`;
+        milestones[2].hasBeenDisplayed = true;
+    }
+    else if ((gameModel.score >= 1000) && (milestones[3].hasBeenDisplayed == false)) {
+        document.getElementById('lastScoreMilestone').textContent = `${milestones[3].message}`;
+        milestones[3].hasBeenDisplayed = true;
+    } else {
+        document.getElementById('lastScoreMilestone').textContent = '';
+    }
     document.getElementById('resetButton').onclick = function () {
         resetGame();
         startGame();
@@ -333,7 +371,7 @@ function displayLostLevelModal() {
 }
 
 function startTimer() {
-    gameModel.time = TIME_BLOCK_SIZE;
+    gameModel.time = timeBlockSize;
     updateTime();
     if (gameModel.timeId)
         clearInterval(gameModel.timeId);
@@ -355,7 +393,8 @@ function updateTime() {
 }
 
 function updateScore() {
-    gameModel.score += ((SCORE_MULTIPLIER * 100) + (SCORE_MULTIPLIER * gameModel.time));
+    console.log("Called!");
+    gameModel.score += ((scoreMult * 100) + (scoreMult * gameModel.time));
     document.getElementById('score').textContent = `💧 Score: ${gameModel.score}`;
 }
 
