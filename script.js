@@ -1,8 +1,14 @@
-const TIME_BLOCK_SIZE = 60
-const TOTAL_LEVELS = 5;
-const SCORE_MULTIPLIER = 1;
+TIME_BLOCK_SIZE = 60
+TOTAL_LEVELS = 5;
+SCORE_MULTIPLIER = 1;
 const levels = {}; // placeholder reference, dictates which level set is used (easy/med/hard)
 const popSound = new Audio('assets/sounds/pop.mp3');
+const milestones = [
+    "Nice flow! You've reached 500 or more points!",
+    "Clean water reached the community! You've reached 1000 or more points!",
+    "Incredible work! You reached 2000 or more points!"
+];
+
 
 const gameModel = {
     difficulty: 0,  // 0 is set as default to avoid using undefined
@@ -301,6 +307,9 @@ function displayNextLevelModal() {
     document.getElementById('nextLevelButton').onclick = function () {
         transitionLevel();
     };
+    if (gameModel.score >= 500 && gameModel.score <= 749) {
+        
+    } 
     gameModel.level += 1;
     nextLevelModal.show();
 }
